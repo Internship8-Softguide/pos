@@ -23,7 +23,7 @@ function create_table($mysqli)
     if (!$mysqli->query($sql)) {
         return false;
     }
-    $sql = "CREATE TABLE IF NOT EXISTS `category`(`id` INT AUTO_INCREMENT,`categoryName` VARCHAR(45) NOT NULL,PRIMARY KEY(`id`))";
+    $sql = "CREATE TABLE IF NOT EXISTS `category`(`id` INT AUTO_INCREMENT,`categoryName` VARCHAR(45) NOT NULL,`categoryImg` LONGTEXT NOT NULL,PRIMARY KEY(`id`))";
     if (!$mysqli->query($sql)) {
         return false;
     }

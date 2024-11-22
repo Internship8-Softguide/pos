@@ -9,18 +9,27 @@
             <thead>
               <tr>
                 <th>No</th>
-                <th>User Name</th>
-                <th>User Email</th>
-                <th>User Role</th>
+                <th>Category Name</th>
+                <th>Image</th>
                 <th>Action</th>
               </tr>
             </thead>
             <tbody>
-              <?php $users = get_users($mysqli); ?>
-              <?php $i = 1; ?>
-              
+              <?php $categories = get_category($mysqli); ?>
+              <?php $i = 1;
+while ($category = $categories->fetch_assoc()) {
+    ?>
+                <tr>
+                  <td><?= $i ?></td>
+                  <td><?= $category['categoryName'] ?></td>
+                  <td>
+                    <img class="table-img" src="data:image/' . $type . ';base64,<?= $category['categoryImg'] ?>">
+                  </td>
+                  <td><?= $i ?></td>
+                </tr>
               <?php $i++;
-              ?>
+}
+?>
             </tbody>
           </table>
           <nav >
