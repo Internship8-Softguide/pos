@@ -32,7 +32,7 @@ function get_user_with_email($mysqli, $email)
 
 function get_users($mysqli, $currentPage)
 {
-    $sql = "SELECT * FROM `user` ORDER BY `id` LIMIT 2 OFFSET $currentPage";
+    $sql = "SELECT * FROM `user` ORDER BY `id` LIMIT 5 OFFSET $currentPage";
     return $mysqli->query($sql);
 }
 function get_user_pag_count($mysqli)
@@ -40,7 +40,7 @@ function get_user_pag_count($mysqli)
     $sql = "SELECT COUNT(`id`) AS total FROM `user`";
     $count = $mysqli->query($sql);
     $total = $count->fetch_assoc();
-    $page = ceil($total['total'] / 2) ;
+    $page = ceil($total['total'] / 5) ;
     return $page;
 }
 

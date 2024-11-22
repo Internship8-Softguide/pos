@@ -6,6 +6,8 @@ $userEmail = $userEmailErr = "";
 $role = $roleErr = "";
 $password = $passwordErr = "";
 $confirm = $confirmErr = "";
+$profile = $profileErr = "";
+$profileName = "";
 $invalid = "";
 if (isset($_POST['userName'])) {
     $userName = $_POST['userName'];
@@ -13,6 +15,8 @@ if (isset($_POST['userName'])) {
     $role = $_POST['role'];
     $password = $_POST['password'];
     $confirm = $_POST['confirm'];
+    $profile = $_FILES['profile'];
+    $profileName = $profile['name'];
     if ($userName === "") {
         $userNameErr = "User name can't be blank!";
         $invalid = "err";
@@ -43,10 +47,15 @@ if (isset($_POST['userName'])) {
             $invalid = "err";
         }
     }
+    if ($profile === "") {
+        $profileErr = "Please choose profile!";
+        $invalid = "err";
+    }
     if (!$invalid) {
         $user_password = password_hash($password, PASSWORD_BCRYPT);
         $status = save_user($mysqli, $userName, $userEmail, $user_password, $role);
         if ($status === true) {
+            move_uploaded_file($profile['tmp_name'], '../assets/profile/'.$profileName);
             // header("Location:./user_list.php");
             echo "<script>location.replace('./user_list.php?lest')</script>";
         } else {
@@ -70,7 +79,7 @@ if (isset($_POST['userName'])) {
                             <?php if ($invalid !== "" && $invalid !== "err") { ?>
                                     <div class="alert alert-danger"><?= $invalid ?></div>
                             <?php } ?>
-                            <form method="post">
+                            <form method="post" enctype="multipart/form-data">
                                 <div class="form-group my-3">
                                     <label class="form-label">User Name</label>
                                     <input type="text" name="userName" class="form-control" value="<?= $userName ?>">
@@ -109,6 +118,11 @@ if (isset($_POST['userName'])) {
                                     <label class="form-label">Confirm Password</label>
                                     <input type="password" name="confirm" value="<?= $confirm ?>" class="form-control">
                                     <div class="validation-message"><?= $confirmErr ?></div>
+                                </div>
+                                <div class="form-group my-3">
+                                    <label class="form-label">Profile</label>
+                                    <input type="file" name="profile" value="<?= $profile ?>" class="form-control">
+                                    <div class="validation-message"><?= $profileErr ?></div>
                                 </div>
                                 <div class="form-group my-3">
                                     <input type="submit" value="Submit" class="btn btn-primary">
