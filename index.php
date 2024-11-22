@@ -9,14 +9,18 @@ if (isset($_COOKIE['user'])) {
 // if (!$user) {
 //     save_user($mysqli, "admin", "admin@gmail.com", "password", 1);
 // }
-$users = get_users($mysqli);
-$users = $users->fetch_all();
-$admin_user = array_filter($users, function ($user) {
-    return $user[4] == 1;
-});
-if (!$admin_user) {
+// $users = get_users($mysqli);
+// $users = $users->fetch_all();
+// $admin_user = array_filter($users, function ($user) {
+//     return $user[4] == 1;
+// });
+// if (!$admin_user) {
+//     $admin_password = password_hash("password", PASSWORD_BCRYPT);
+//     save_user($mysqli, "admin", "admin@gmail.com", $admin_password, 1);
+// }
+if (have_admin($mysqli)) {
     $admin_password = password_hash("password", PASSWORD_BCRYPT);
-    save_user($mysqli, "admin", "admin@gmail.com", $admin_password, 1);
+    save_user($mysqli, "admin", "admin@gmail.com", $admin_password, 1, "profile.png");
 }
 
 $email = $email_err = $password = $password_err = "";

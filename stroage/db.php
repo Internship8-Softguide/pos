@@ -15,7 +15,7 @@ try {
 
 function create_table($mysqli)
 {
-    $sql = "CREATE TABLE IF NOT EXISTS `user`(`id` INT AUTO_INCREMENT,`username` VARCHAR(45) NOT NULL,`email` VARCHAR(95) UNIQUE NOT NULL,`password` VARCHAR(100) NOT NULL,`role` INT NOT NULL,PRIMARY KEY(`id`))";
+    $sql = "CREATE TABLE IF NOT EXISTS `user`(`id` INT AUTO_INCREMENT,`username` VARCHAR(45) NOT NULL,`email` VARCHAR(95) UNIQUE NOT NULL,`password` VARCHAR(100) NOT NULL,`role` INT NOT NULL,`profile` VARCHAR(225) NOT NULL ,PRIMARY KEY(`id`))";
     if (!$mysqli->query($sql)) {
         return false;
     }

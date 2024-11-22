@@ -120,6 +120,11 @@ body {
   height: 40px;
   border-radius: 50%;
 }
+.table-img {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+}
 .profile-wapper {
   display: flex;
   align-items: center;

@@ -30,6 +30,7 @@ if (isset($_GET['deleteId'])) {
                 <th>User Name</th>
                 <th>User Email</th>
                 <th>User Role</th>
+                <th>User Image</th>
                 <th>Action</th>
               </tr>
             </thead>
@@ -61,6 +62,9 @@ if (isset($_GET['deleteId'])) {
                         echo "Waiter";
                     }
                   ?>
+                  </td>
+                  <td>
+                    <img class="table-img" src="../assets/profile/<?= $u['profile'] ?>">
                   </td>
                   <th>
                     <?php if ($u['id'] === $user['id']) { ?>

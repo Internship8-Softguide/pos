@@ -16,7 +16,7 @@ if (isset($_POST['userName'])) {
     $password = $_POST['password'];
     $confirm = $_POST['confirm'];
     $profile = $_FILES['profile'];
-    $profileName = $profile['name'];
+    $profileName = $profile['name'].date('YMDHIS');
     if ($userName === "") {
         $userNameErr = "User name can't be blank!";
         $invalid = "err";
@@ -47,13 +47,17 @@ if (isset($_POST['userName'])) {
             $invalid = "err";
         }
     }
-    if ($profile === "") {
+    if ($profileName === "") {
         $profileErr = "Please choose profile!";
         $invalid = "err";
     }
+    // else{
+    //     $extension = explode($profileName)[1];
+    //     // if($extension)
+    // }
     if (!$invalid) {
         $user_password = password_hash($password, PASSWORD_BCRYPT);
-        $status = save_user($mysqli, $userName, $userEmail, $user_password, $role);
+        $status = save_user($mysqli, $userName, $userEmail, $user_password, $role, $profileName);
         if ($status === true) {
             move_uploaded_file($profile['tmp_name'], '../assets/profile/'.$profileName);
             // header("Location:./user_list.php");

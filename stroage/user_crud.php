@@ -1,10 +1,10 @@
 <?php
 
 
-function save_user($mysqli, $name, $email, $password, $role)
+function save_user($mysqli, $name, $email, $password, $role, $profile)
 {
     try {
-        $sql = "INSERT INTO `user` (`username`,`email`,`password`,`role`) VALUE ('$name','$email','$password',$role)";
+        $sql = "INSERT INTO `user` (`username`,`email`,`password`,`role`,`profile`) VALUE ('$name','$email','$password',$role,'$profile')";
         return $mysqli->query($sql);
     } catch (\Throwable $th) {
         if ($th->getCode() === 1062) {
@@ -34,6 +34,17 @@ function get_users($mysqli, $currentPage)
 {
     $sql = "SELECT * FROM `user` ORDER BY `id` LIMIT 5 OFFSET $currentPage";
     return $mysqli->query($sql);
+}
+
+function have_admin($mysqli)
+{
+    $sql = "SELECT COUNT(`id`) as total FROM `user` WHERE `role`=1";
+    $total = $mysqli->query($sql);
+    $total = $total->fetch_assoc();
+    if ($total['total'] > 0) {
+        return false;
+    }
+    return true;
 }
 function get_user_pag_count($mysqli)
 {
