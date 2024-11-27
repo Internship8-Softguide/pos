@@ -135,3 +135,49 @@ body {
   font-size: 13px;
   padding: 5px 0px;
 }
+
+/* watier css */
+.innner-container {
+  display: flex;
+  padding: 20px;
+}
+.invoice-container {
+  width: 40%;
+  min-height: 95vh;
+  padding: 25px;
+  border-radius: 15px;
+  background-color: #ffffff;
+}
+.waiter-profile {
+  display: flex;
+  align-items: center;
+}
+.waiter-profile > img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+}
+.waiter-profile-name {
+  margin-left: 30px;
+  margin-top: 10px;
+}
+.invoice-action {
+  width: 120px;
+}
+.invoice-footer {
+  display: flex;
+  justify-content: space-between;
+  border-top: 1px solid #adadad;
+  padding-top: 10px;
+}
+.order-invoice {
+  min-height: 75%;
+}
+@media screen and (max-width: 499px) {
+  .innner-container {
+    display: block;
+  }
+  .invoice-container {
+    width: 100%;
+  }
+}

@@ -1,7 +1,7 @@
 <?php
 
 try {
-    $mysqli = new mysqli("127.0.0.10", "root", "");
+    $mysqli = new mysqli("127.0.0.10", "root", "admin");
     $sql = "CREATE DATABASE IF NOT EXISTS `pos`";
     if ($mysqli->query($sql)) {
         if ($mysqli->select_db("pos")) {
