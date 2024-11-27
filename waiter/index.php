@@ -9,8 +9,8 @@
                     <p><?= $user['email']?></p>
                 </div>
             </div>
-            <div class="order-invoice">
-                <table class="table ">
+            <div class="order-invoice table-responsive">
+                <table class="table">
                     <thead>
                         <tr>
                             <th>NO</th>
@@ -66,7 +66,22 @@
                 <h3>1980 MMK</h3>
             </div>
         </div>
-        <div class="main-content">a</div>
+        <div class="main-content">
+            <div class="customer-table">
+                <?php $tables = get_tables($mysqli); ?>
+                <?php while ($table = $tables->fetch_assoc()) { ?>  
+                <a href="?selectTable=<?= $table['id'] ?>" class="c-table"><?= $table['tableName'] ?></a>
+                <?php } ?>
+            </div>
+            <div class="category-container">
+                <?php $categories = get_category($mysqli); ?>
+                <?php while ($category = $categories->fetch_assoc()) {?>
+                <a class="select-category" href="?catId=1">
+                    <img src="data:image/' . $type . ';base64,<?= $category['categoryImg'] ?>">
+                </a>
+                <?php } ?>
+            </div>
+        </div>
     </div>
 </div>
 <?php require_once ("../layout/footer.php") ?>
