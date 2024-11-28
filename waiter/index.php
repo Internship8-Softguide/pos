@@ -13,7 +13,6 @@
                 <table class="table">
                     <thead>
                         <tr>
-                            <th>NO</th>
                             <th>Item</th>
                             <th>Price</th>
                             <th>Qty</th>
@@ -23,7 +22,6 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td>1</td>
                             <td>Beef</td>
                             <td>3300</td>
                             <td>2</td>
@@ -41,7 +39,6 @@
                             <td>6600</td>
                         </tr>
                         <tr>
-                            <td>1</td>
                             <td>Beef</td>
                             <td>3300</td>
                             <td>2</td>
@@ -70,7 +67,14 @@
             <div class="customer-table">
                 <?php $tables = get_tables($mysqli); ?>
                 <?php while ($table = $tables->fetch_assoc()) { ?>  
-                <a href="?selectTable=<?= $table['id'] ?>" class="c-table"><?= $table['tableName'] ?></a>
+                <a href="?tableId=<?= $table['id'] ?>" class="c-table 
+                <?php if ($table['taken']) {
+                    echo "taken";
+                } else {
+                    echo "free-table";
+                } ?>
+                "><?= $table['tableName'] ?></a>
+                
                 <?php } ?>
             </div>
             <div class="category-container">
@@ -78,6 +82,7 @@
                 <?php while ($category = $categories->fetch_assoc()) {?>
                 <a class="select-category" href="?catId=1">
                     <img src="data:image/' . $type . ';base64,<?= $category['categoryImg'] ?>">
+                    <p><?= $category['categoryName'] ?></p>
                 </a>
                 <?php } ?>
             </div>

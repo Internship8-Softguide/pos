@@ -16,7 +16,7 @@ if (isset($_POST['userName'])) {
     $password = $_POST['password'];
     $confirm = $_POST['confirm'];
     $profile = $_FILES['profile'];
-    $profileName = $profile['name'].date('YMDHIS');
+    $profileName = date('YMDHIS'). $profile['name'];
     if ($userName === "") {
         $userNameErr = "User name can't be blank!";
         $invalid = "err";
