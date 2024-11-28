@@ -5,8 +5,15 @@
             <div class="waiter-profile">
                 <img src="../assets/profile/<?= $user['profile']?>" >
                 <div class="waiter-profile-name">
-                    <h3><?= $user['username']?></h3>
-                    <p><?= $user['email']?></p>
+                    <div>
+                        <h3><?= $user['username']?></h3>
+                        <p><?= $user['email']?></p>
+                    </div>
+                    <form method="post">
+                        <button class="waiter-logout" name="logout" type="submit">
+                            Logout
+                        </button>
+                    </form>
                 </div>
             </div>
             <div class="order-invoice table-responsive">
@@ -60,7 +67,7 @@
             </div>  
             <div class="invoice-footer">
                 <h3>Total</h3>
-                <h3>1980 MMK</h3>
+                <h3><a href="?order" class="btn btn-sm btn-success">Order</a> 1980 MMK</h3>
             </div>
         </div>
         <div class="main-content">
@@ -75,14 +82,13 @@
                     echo "free-table";
                 } ?>
                 "><?= $table['tableName'] ?></a>
-                
                 <?php } ?>
             </div>
             <h6>Categories</h6>
             <div class="category-container">
                 <?php $categories = get_category($mysqli); ?>
                 <?php while ($category = $categories->fetch_assoc()) {?>
-                <a class="select-category" href="?catId=1">
+                <a class="select-category" href="?catId=<?= $category['id'] ?>">
                     <img src="data:image/' . $type . ';base64,<?= $category['categoryImg'] ?>">
                     <p><?= $category['categoryName'] ?></p>
                 </a>
@@ -92,11 +98,17 @@
             <div class="item-container">
                 <?php $items = get_items($mysqli); ?>
                 <?php while ($item = $items->fetch_assoc()) {?>
-                    <a href="?itemId=1" class="card">
-                        <img src="../assets/items/<?= $item['img'] ?>" class="card-img-top" >
+                    <a class="select-item" href="?itemId=<?= $item['id'] ?>">
+                        <img src="../assets/items/<?= $item['img'] ?>">
                         <div class="item-text">
-                            <div ><?= $item['name'] ?></div>
-                            <div ><?= $item['price'] ?> MMK</div>
+                            <span><?php
+                            if (strlen($item['name']) > 10) {
+                                echo substr($item['name'], 0, 10)."...";
+                            } else {
+                                echo $item['name'];
+                            }
+                    ?></span>
+                            <span><?= $item['price']?> MMK</span>
                         </div>
                     </a>
                 <?php } ?>

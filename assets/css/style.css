@@ -158,8 +158,11 @@ body {
   border-radius: 50%;
 }
 .waiter-profile-name {
+  flex-grow: 1;
   margin-left: 30px;
   margin-top: 10px;
+  display: flex;
+  justify-content: space-between;
 }
 .invoice-action {
   width: 120px;
@@ -194,6 +197,7 @@ body {
 ::-webkit-scrollbar-thumb {
   background-color: #888;
   border-radius: 4px;
+  width: 20px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
@@ -229,8 +233,7 @@ body {
   text-transform: uppercase;
   font-weight: bolder;
 }
-.select-category > p,
-.select-item > p {
+.select-category > p {
   color: #000;
   text-align: center;
   margin-bottom: 0px;
@@ -244,28 +247,34 @@ body {
 .select-category,
 .select-item {
   padding: 0px;
+  background-color: white;
 }
 .select-category > img {
   height: 100px;
   width: 100px;
   border: 1px solid #4b3f3f;
-  border-radius: 5px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
 }
 .select-item > img {
-  height: 120px;
-  width: 120px;
+  height: 280px;
+  width: 300px;
   border: 1px solid #4b3f3f;
   border-radius: 5px;
-}
-.card {
-  width: 200px;
-  text-decoration: none;
 }
 .item-text {
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  padding: 10px;
+  color: #000;
+  padding: 5px;
+}
+
+.waiter-logout {
+  padding: 2px 5px;
+  border: 1px solid red;
+  border-radius: 25px;
+  color: red;
+  background-color: #f8f5f0;
 }
 
 @media screen and (max-width: 499px) {
