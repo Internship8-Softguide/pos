@@ -27,7 +27,7 @@ function create_table($mysqli)
     if (!$mysqli->query($sql)) {
         return false;
     }
-    $sql = "CREATE TABLE IF NOT EXISTS `item`(`id` INT AUTO_INCREMENT,`name` VARCHAR(45) NOT NULL,`price` INT NOT NULL,`category_id` INT NOT NULL,PRIMARY KEY(`id`),FOREIGN KEY(`category_id`) REFERENCES `category`(`id`))";
+    $sql = "CREATE TABLE IF NOT EXISTS `item`(`id` INT AUTO_INCREMENT,`name` VARCHAR(45) NOT NULL,`price` INT NOT NULL,`category_id` INT NOT NULL, `img` VARCHAR(225) NOT NULL,PRIMARY KEY(`id`),FOREIGN KEY(`category_id`) REFERENCES `category`(`id`))";
     if (!$mysqli->query($sql)) {
         return false;
     }

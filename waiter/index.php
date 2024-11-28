@@ -64,6 +64,7 @@
             </div>
         </div>
         <div class="main-content">
+            <h6>Tables</h6>
             <div class="customer-table">
                 <?php $tables = get_tables($mysqli); ?>
                 <?php while ($table = $tables->fetch_assoc()) { ?>  
@@ -77,6 +78,7 @@
                 
                 <?php } ?>
             </div>
+            <h6>Categories</h6>
             <div class="category-container">
                 <?php $categories = get_category($mysqli); ?>
                 <?php while ($category = $categories->fetch_assoc()) {?>
@@ -84,6 +86,19 @@
                     <img src="data:image/' . $type . ';base64,<?= $category['categoryImg'] ?>">
                     <p><?= $category['categoryName'] ?></p>
                 </a>
+                <?php } ?>
+            </div>
+            <h5>Menu Items</h5>
+            <div class="item-container">
+                <?php $items = get_items($mysqli); ?>
+                <?php while ($item = $items->fetch_assoc()) {?>
+                    <a href="?itemId=1" class="card">
+                        <img src="../assets/items/<?= $item['img'] ?>" class="card-img-top" >
+                        <div class="item-text">
+                            <div ><?= $item['name'] ?></div>
+                            <div ><?= $item['price'] ?> MMK</div>
+                        </div>
+                    </a>
                 <?php } ?>
             </div>
         </div>

@@ -3,6 +3,7 @@
 <?php require_once ("../stroage/user_crud.php") ?>
 <?php require_once ("../stroage/category_crud.php") ?>
 <?php require_once ("../stroage/table_crud.php") ?>
+<?php require_once ("../stroage/items_crud.php") ?>
 
 
 <!DOCTYPE html>
