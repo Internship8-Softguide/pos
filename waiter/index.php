@@ -10,9 +10,15 @@
                         <p><?= $user['email']?></p>
                     </div>
                     <form method="post">
-                        <button class="waiter-logout" name="logout" type="submit">
-                            Logout
-                        </button>
+                    <div class="dropdown">
+                        <div style="outline: none;border: none;" class="btn" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fa fa-ellipsis-vertical"></i>
+                        </div>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item"  >Profile</a></li>
+                            <li><button name="logout" class="dropdown-item">Logout</button></li>
+                        </ul>
+                        </div>
                     </form>
                 </div>
             </div>
@@ -81,7 +87,11 @@
                 } else {
                     echo "free-table";
                 } ?>
-                "><?= $table['tableName'] ?></a>
+                "><?= $table['tableName'] ?>
+                <br>
+                <i class="fa fa-chair"></i>&nbsp;&nbsp;
+                <?= $table['seat'] ?>
+            </a>
                 <?php } ?>
             </div>
             <h6>Categories</h6>
