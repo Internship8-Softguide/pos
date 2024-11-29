@@ -8,7 +8,7 @@
               <thead>
                 <tr>
                   <th>Table Name</th>
-                  <th>Item count</th>
+                  <th>Total Item</th>
                   <th>Action</th>
                 </tr>
               </thead>
