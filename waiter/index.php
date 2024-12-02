@@ -35,9 +35,10 @@
                         </tr>
                     </thead>
                     <tbody>
+                      <?php foreach ($item_array as $index => $item) { ?>
                         <tr>
-                            <td>Beef</td>
-                            <td>3300</td>
+                            <td><?= $item['name'] ?></td>
+                            <td><?= $item['price'] ?></td>
                             <td>2</td>
                             <td class="invoice-action">
                                 <button class="btn btn-secondary btn-sm">
@@ -50,25 +51,9 @@
                                     <i class="fa fa-trash"></i>
                                 </button>
                             </td>
-                            <td>6600</td>
+                            <td><?= $item['price'] ?></td>
                         </tr>
-                        <tr>
-                            <td>Beef</td>
-                            <td>3300</td>
-                            <td>2</td>
-                            <td class="invoice-action">
-                                <button class="btn btn-secondary btn-sm">
-                                    <i class="fa fa-minus"></i>
-                                </button>
-                                <button class="btn btn-primary btn-sm">
-                                    <i class="fa fa-plus"></i>
-                                </button>
-                                <button class="btn btn-danger btn-sm">
-                                    <i class="fa fa-trash"></i>
-                                </button>
-                            </td>
-                            <td>6600</td>
-                        </tr>
+                     <?php } ?>
                     </tbody>
                 </table>   
             </div>  
