@@ -1,4 +1,5 @@
 <?php require_once ("../layout/header.php") ?>
+<?php require_once ("./server.php") ?>
 <div class="content">
     <div class="innner-container">
         <div class="invoice-container">
@@ -96,6 +97,10 @@
             </div>
             <h6>Categories</h6>
             <div class="category-container">
+                <a class="select-category" href="?">
+                    <img src="../assets/items/allItem.png">
+                    <p>All Items</p>
+                </a>
                 <?php $categories = get_category($mysqli); ?>
                 <?php while ($category = $categories->fetch_assoc()) {?>
                 <a class="select-category" href="?catId=<?= $category['id'] ?>">
@@ -107,16 +112,21 @@
             <h5>Menu Items</h5>
             <div class="item-container">
                 <?php $items = get_items($mysqli); ?>
+                <?php
+                if (isset($_GET['catId'])) {
+                    $items =   get_items_by_category_id($mysqli, $_GET['catId']);
+                }
+?>
                 <?php while ($item = $items->fetch_assoc()) {?>
                     <a class="select-item" href="?itemId=<?= $item['id'] ?>">
                         <img src="../assets/items/<?= $item['img'] ?>">
                         <div class="item-text">
                             <span><?php
-                            if (strlen($item['name']) > 10) {
-                                echo substr($item['name'], 0, 10)."...";
-                            } else {
-                                echo $item['name'];
-                            }
+            if (strlen($item['name']) > 10) {
+                echo substr($item['name'], 0, 10)."...";
+            } else {
+                echo $item['name'];
+            }
                     ?></span>
                             <span><?= $item['price']?> MMK</span>
                         </div>

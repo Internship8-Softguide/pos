@@ -31,7 +31,7 @@ function create_table($mysqli)
     if (!$mysqli->query($sql)) {
         return false;
     }
-    $sql = "CREATE TABLE IF NOT EXISTS `invoice` (`id` INT AUTO_INCREMENT,`item_id` INT NOT NULL,`table_id` INT NOT NULL,`paid` INT NOT NULL,`qty` INT NOT NULL,PRIMARY KEY (`id`),FOREIGN KEY (`item_id`) REFERENCES `item`(`id`),FOREIGN KEY (`table_id`) REFERENCES `table`(`id`))";
+    $sql = "CREATE TABLE IF NOT EXISTS `invoice` (`id` INT AUTO_INCREMENT,`table_id` INT NOT NULL,`paid` INT NOT NULL,PRIMARY KEY (`id`),FOREIGN KEY (`table_id`) REFERENCES `table`(`id`))";
     if (!$mysqli->query($sql)) {
         return false;
     }
