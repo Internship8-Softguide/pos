@@ -39,17 +39,17 @@
                         <tr>
                             <td><?= $item['name'] ?></td>
                             <td><?= $item['price'] ?></td>
-                            <td>2</td>
+                            <td><?= $item['count'] ?></td>
                             <td class="invoice-action">
-                                <button class="btn btn-secondary btn-sm">
+                                <a class="btn btn-secondary btn-sm">
                                     <i class="fa fa-minus"></i>
-                                </button>
-                                <button class="btn btn-primary btn-sm">
+                                </a>
+                                <a class="btn btn-primary btn-sm">
                                     <i class="fa fa-plus"></i>
-                                </button>
-                                <button class="btn btn-danger btn-sm">
+                                </a>
+                                <a href="?remove=<?= $index ?>&catId=<?= $category_id ?>"  class="btn btn-danger btn-sm">
                                     <i class="fa fa-trash"></i>
-                                </button>
+                                </a>
                             </td>
                             <td><?= $item['price'] ?></td>
                         </tr>
