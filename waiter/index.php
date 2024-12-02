@@ -97,7 +97,7 @@
             </div>
             <h6>Categories</h6>
             <div class="category-container">
-                <a class="select-category" href="?">
+                <a class="select-category" href="?catId=0">
                     <img src="../assets/items/allItem.png">
                     <p>All Items</p>
                 </a>
@@ -113,12 +113,12 @@
             <div class="item-container">
                 <?php $items = get_items($mysqli); ?>
                 <?php
-                if (isset($_GET['catId'])) {
+                if ($category_id != 0) {
                     $items =   get_items_by_category_id($mysqli, $_GET['catId']);
                 }
 ?>
                 <?php while ($item = $items->fetch_assoc()) {?>
-                    <a class="select-item" href="?itemId=<?= $item['id'] ?>">
+                    <a class="select-item" href="?itemId=<?= $item['id'] ?>&catId=<?= $category_id ?>">
                         <img src="../assets/items/<?= $item['img'] ?>">
                         <div class="item-text">
                             <span><?php
