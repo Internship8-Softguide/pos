@@ -24,6 +24,9 @@
                 </div>
             </div>
             <div class="order-invoice table-responsive">
+                <?php if ($select_table) { ?>
+                    <div class="alert alert-danger"><?= $select_table ?></div>
+                <?php } ?> 
                 <table class="table">
                     <thead>
                         <tr>
