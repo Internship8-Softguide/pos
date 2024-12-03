@@ -41,10 +41,10 @@
                             <td><?= $item['price'] ?></td>
                             <td><?= $item['count'] ?></td>
                             <td class="invoice-action">
-                                <a class="btn btn-secondary btn-sm">
+                                <a href="?minus=<?= $index ?>&catId=<?= $category_id ?>" class="btn btn-secondary btn-sm">
                                     <i class="fa fa-minus"></i>
                                 </a>
-                                <a class="btn btn-primary btn-sm">
+                                <a href="?add=<?= $index ?>&catId=<?= $category_id ?>" class="btn btn-primary btn-sm">
                                     <i class="fa fa-plus"></i>
                                 </a>
                                 <a href="?remove=<?= $index ?>&catId=<?= $category_id ?>"  class="btn btn-danger btn-sm">
