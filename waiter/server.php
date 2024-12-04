@@ -78,3 +78,14 @@ if (isset($_GET['minus'])) {
     $_SESSION['item_list'] = $item_array;
     header("Location:?catId=$category_id");
 }
+
+if (isset($_GET['order'])) {
+    $invoice_id = save_invoice($mysqli, $table_id);
+    foreach ($item_array as $index => $item) {
+        if ($item['table_id'] == $table_id) {
+            save_order($mysqli, $item['id'], $invoice_id, $item['count']);
+            array_splice($item_array, $index, 1);
+            $_SESSION['item_list'] = $item_array;
+        }
+    }
+}

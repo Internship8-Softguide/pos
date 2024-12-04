@@ -67,9 +67,12 @@
             </div>  
             <div class="invoice-footer">
                 <h3>Total</h3>
-                <h3> <?php if ($net_total != 0) { ?>
-                    <a href="?order" class="btn btn-sm btn-success">Order</a>
-                 <?php } ?> <?= $net_total ?> MMK</h3>
+                <h3> 
+                    <?php if ($net_total != 0) { ?>
+                        <a href="?order" class="btn btn-sm btn-success">Order</a>
+                    <?php } ?> 
+                    <?= $net_total ?> MMK
+                </h3>
             </div>
         </div>
         <div class="main-content">
