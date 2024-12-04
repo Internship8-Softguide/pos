@@ -244,6 +244,9 @@ body {
 .taken {
   background-color: #2b2727;
 }
+.active-table {
+  background-color: #a2ef63;
+}
 .select-category,
 .select-item {
   padding: 0px;

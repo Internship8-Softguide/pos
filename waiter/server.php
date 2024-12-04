@@ -5,11 +5,12 @@ session_start();
 $item_array = [];
 $table_id = 0;
 
-if (isset($_SESSION["item_list"])) {
-    $item_array = $_SESSION["item_list"];
-}
 if (isset($_SESSION["table"])) {
     $table_id = $_SESSION["table"];
+}
+
+if (isset($_SESSION["item_list"])) {
+    $item_array = $_SESSION["item_list"];
 }
 
 $category_id = 0;
@@ -39,7 +40,7 @@ if (isset($_GET['itemId'])) {
             }
         }
         if ($isHave) {
-            array_push($item_array, ['id' => $item['id'],'name' => $item['name'],'price' => $item['price'],'count' => 1]);
+            array_push($item_array, ['id' => $item['id'],'name' => $item['name'],'price' => $item['price'],'count' => 1,'table_id' => $table_id]);
         }
         $_SESSION["item_list"] = $item_array;
         header("Location:?catId=$category_id");

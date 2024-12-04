@@ -38,7 +38,11 @@
                         </tr>
                     </thead>
                     <tbody>
+                    <?php $net_total = 0 ?>
                       <?php foreach ($item_array as $index => $item) { ?>
+                        <?php if ($table_id == $item['table_id']) {?>
+                        <?php $sub_total = $item['price'] * $item['count'] ?>
+                        <?php $net_total = $net_total + $sub_total ?>
                         <tr>
                             <td><?= $item['name'] ?></td>
                             <td><?= $item['price'] ?></td>
@@ -54,15 +58,18 @@
                                     <i class="fa fa-trash"></i>
                                 </a>
                             </td>
-                            <td><?= $item['price'] ?></td>
+                            <td><?= $sub_total ?></td>
                         </tr>
-                     <?php } ?>
+                     <?php }
+                        } ?>
                     </tbody>
                 </table>   
             </div>  
             <div class="invoice-footer">
                 <h3>Total</h3>
-                <h3><a href="?order" class="btn btn-sm btn-success">Order</a> 1980 MMK</h3>
+                <h3> <?php if ($net_total != 0) { ?>
+                    <a href="?order" class="btn btn-sm btn-success">Order</a>
+                 <?php } ?> <?= $net_total ?> MMK</h3>
             </div>
         </div>
         <div class="main-content">
@@ -75,7 +82,11 @@
                     echo "taken";
                 } else {
                     echo "free-table";
-                } ?>
+                }
+                    if ($table['id'] == $table_id) {
+                        echo " active-table";
+                    }
+                    ?>
                 "><?= $table['tableName'] ?>
                 <br>
                 <i class="fa fa-chair"></i>&nbsp;&nbsp;
@@ -101,9 +112,9 @@
             <div class="item-container">
                 <?php $items = get_items($mysqli); ?>
                 <?php
-                if ($category_id != 0) {
-                    $items =   get_items_by_category_id($mysqli, $_GET['catId']);
-                }
+                    if ($category_id != 0) {
+                        $items =   get_items_by_category_id($mysqli, $_GET['catId']);
+                    }
 ?>
                 <?php while ($item = $items->fetch_assoc()) {?>
                     <a class="select-item" href="?itemId=<?= $item['id'] ?>&catId=<?= $category_id ?>">
