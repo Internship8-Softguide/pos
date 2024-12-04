@@ -34,7 +34,7 @@ if (isset($_GET['itemId'])) {
         $item = get_items_with_item_id($mysqli, $_GET['itemId']);
         $isHave = true;
         for ($i = 0; $i < count($item_array);$i++) {
-            if ($item_array[$i]['id'] == $item['id']) {
+            if ($item_array[$i]['id'] == $item['id'] && $table_id  == $item_array[$i]['table_id']) {
                 $isHave = false;
                 $item_array[$i]['count']++;
             }
@@ -81,11 +81,14 @@ if (isset($_GET['minus'])) {
 
 if (isset($_GET['order'])) {
     $invoice_id = save_invoice($mysqli, $table_id);
+    $remain_array = [];
     foreach ($item_array as $index => $item) {
-        if ($item['table_id'] == $table_id) {
+        if ($item['table_id'] != $table_id) {
+            array_push($remain_array, $item);
+        } else {
             save_order($mysqli, $item['id'], $invoice_id, $item['count']);
-            array_splice($item_array, $index, 1);
-            $_SESSION['item_list'] = $item_array;
         }
     }
+    $_SESSION['item_list'] = $remain_array;
+    header("Location:?");
 }

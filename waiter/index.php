@@ -1,5 +1,8 @@
 <?php require_once ("../layout/header.php") ?>
 <?php require_once ("./server.php") ?>
+<?php
+$order_result = get_order_for_waiter($mysqli, $table_id);
+?>
 <div class="content">
     <div class="innner-container">
         <div class="invoice-container">
@@ -38,9 +41,26 @@
                         </tr>
                     </thead>
                     <tbody>
-                    <?php $net_total = 0 ?>
+                    <?php $net_total = 0;?>
+                    <?php $show = false; ?>
+                    
+                    <?php while ($ordered = $order_result->fetch_assoc()) {?>
+                        <?php $sub_total = $ordered['price'] * $ordered['qty'] ?>
+                        <?php $net_total = $net_total + $sub_total ?>
+                        <tr>
+                            <td><?= $ordered['name'] ?></td>
+                            <td><?= $ordered['price'] ?></td>
+                            <td><?= $ordered['qty'] ?></td>
+                            <td><?php if ($ordered['status'] == 0) {?>
+                                    <span class="text-primary">Ordered</span>
+                               <?php } ?>
+                            </td>  
+                            <td><?= $sub_total ?></td>
+                        </tr>
+                    <?php } ?>
                       <?php foreach ($item_array as $index => $item) { ?>
                         <?php if ($table_id == $item['table_id']) {?>
+                        <?php $show = true; ?>
                         <?php $sub_total = $item['price'] * $item['count'] ?>
                         <?php $net_total = $net_total + $sub_total ?>
                         <tr>
@@ -68,7 +88,7 @@
             <div class="invoice-footer">
                 <h3>Total</h3>
                 <h3> 
-                    <?php if ($net_total != 0) { ?>
+                    <?php if ($show) { ?>
                         <a href="?order" class="btn btn-sm btn-success">Order</a>
                     <?php } ?> 
                     <?= $net_total ?> MMK
