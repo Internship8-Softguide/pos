@@ -11,3 +11,10 @@ function save_invoice($mysqli, $table_id)
         return $lest_row['id'];
     }
 }
+
+
+function get_order($mysqli)
+{
+    $sql = "SELECT `table`.tableName,`invoice`.id as inv_id,(SELECT count(*) FROM `order` WHERE `invoice_id`=`invoice`.`id`) as count FROM `invoice` INNER JOIN `table` on `invoice`.table_id=`table`.id WHERE `invoice`.paid=0" ;
+    return $mysqli->query($sql);
+}

@@ -1,4 +1,9 @@
 <?php require_once ("../layout/header.php") ?>
+<?php
+if (isset($_GET['ots'])) {
+    ots($mysqli, $_GET['ots']);
+}
+?>
 <div class="content">
       <?php require_once ("../layout/nav.php") ?>  
       <div class="container mt-5">
@@ -15,11 +20,13 @@
                 </tr>
               </thead>
               <tbody>
-              <tr>
+              <?php $order_list = get_order_with_invoice($mysqli, $_GET['id']); ?>
+              <?php while ($order = $order_list->fetch_assoc()) {?>
+                <tr>
                   <th>Crap salad</th>
                   <th>2</th>
                   <th>
-                    <a href="?ots=1" class="btn btn-danger">
+                    <a href="?ots=<?= $order['id']?>&id=<?= $order['invoice_id']?>" class="btn btn-danger">
                       <i class="fa fa-xmark"></i>
                     </a>
                   </th>
@@ -34,6 +41,8 @@
                     </a>
                   </th>
                 </tr>
+                <?php }?>
+              
               </tbody>
           </table>
           </div>

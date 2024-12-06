@@ -13,15 +13,18 @@
                 </tr>
               </thead>
               <tbody>
-              <tr>
-                  <th>Couple 1</th>
-                  <th>5</th>
-                  <th>
-                    <a href="./order_detail.php?id=1" class="btn btn-info">
-                      <i class="fa fa-eye"></i>
-                    </a>
-                  </th>
-                </tr>
+                <?php $orders = get_order($mysqli); ?>
+                <?php while ($order = $orders->fetch_assoc()) { ?>
+                  <tr>
+                      <th><?= $order['tableName'] ?></th>
+                      <th><?= $order['count'] ?></th>
+                      <th>
+                        <a href="./order_detail.php?id=<?= $order['inv_id'] ?>" class="btn btn-info">
+                          <i class="fa fa-eye"></i>
+                        </a>
+                      </th>
+                    </tr>
+                <?php } ?>
               </tbody>
           </table>
           </div>
