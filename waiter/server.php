@@ -90,5 +90,6 @@ if (isset($_GET['order'])) {
         }
     }
     $_SESSION['item_list'] = $remain_array;
+    taken_table($mysqli, $table_id);
     header("Location:?");
 }

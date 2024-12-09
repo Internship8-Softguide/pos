@@ -30,13 +30,18 @@ if (isset($_GET['done'])) {
               </thead>
               <tbody>
               <?php $order_list = get_order_with_invoice($mysqli, $_GET['id']); ?>
+              <?php
+              $order_count = get_order_with_invoice($mysqli, $_GET['id']);
+if (count($order_count->fetch_all()) == 0) {
+    header("location:../index.php");
+} ?>
               <?php while ($order = $order_list->fetch_assoc()) {?>
                 <tr>
                   <th><?= $order['name'] ?></th>
                   <th><?= $order['qty'] ?></th>
                   <th>
                     <?php if ($order['status'] == 9) {?>
-                      <samp class="text-danger">Out of stock</samp>
+                      <span class="text-danger">Out of stock</span>
                     <?php } elseif ($order['status'] == 0) { ?>
                     <a href="?ots=<?= $order['id']?>&id=<?= $order['invoice_id']?>" class="btn btn-danger">
                       <i class="fa fa-xmark"></i>

@@ -46,14 +46,22 @@ $order_result = get_order_for_waiter($mysqli, $table_id);
                     
                     <?php while ($ordered = $order_result->fetch_assoc()) {?>
                         <?php $sub_total = $ordered['price'] * $ordered['qty'] ?>
-                        <?php $net_total = $net_total + $sub_total ?>
+                        <?php if ($ordered['status'] != 9) {
+                            $net_total = $net_total + $sub_total;
+                        } ?>
                         <tr>
                             <td><?= $ordered['name'] ?></td>
                             <td><?= $ordered['price'] ?></td>
                             <td><?= $ordered['qty'] ?></td>
                             <td><?php if ($ordered['status'] == 0) {?>
                                     <span class="text-primary">Ordered</span>
-                               <?php } ?>
+                               <?php } elseif ($ordered['status'] == 9) { ?>
+                                <span class="text-danger">Out of Stock</span>
+                               <?php } elseif ($ordered['status'] == 1) { ?>
+                                <span class="text-info">Preparing</span>
+                               <?php } else { ?>
+                                <span class="text-success">Delivered</span>
+                                <?php } ?>
                             </td>  
                             <td><?= $sub_total ?></td>
                         </tr>
