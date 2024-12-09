@@ -15,12 +15,23 @@ function get_order_for_waiter($mysqli, $table_id)
 
 function get_order_with_invoice($mysqli, $invoice_id)
 {
-    $sql = "SELECT * FROM `order` WHERE `invoice_id`=$invoice_id AND `status`!=9 ";
+    $sql = "SELECT `order`.id,`order`.invoice_id,`item`.name,`order`.qty,`order`.status FROM `order` INNER JOIN `item` ON `order`.item_id=`item`.id WHERE `invoice_id`=$invoice_id AND `status`!=9 AND `status`!=2 ";
     return $mysqli->query($sql);
 }
 
 function ots($mysqli, $order_id)
 {
     $sql = "UPDATE `order` SET `status`=9 WHERE `id`=$order_id";
+    return $mysqli->query($sql);
+}
+
+function accept_order($mysqli, $order_id)
+{
+    $sql = "UPDATE `order` SET `status`=1 WHERE `id`=$order_id";
+    return $mysqli->query($sql);
+}
+function done_order($mysqli, $order_id)
+{
+    $sql = "UPDATE `order` SET `status`=2 WHERE `id`=$order_id";
     return $mysqli->query($sql);
 }
