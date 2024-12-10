@@ -142,22 +142,20 @@ $order_result = get_order_for_waiter($mysqli, $table_id);
             <h5>Menu Items</h5>
             <div class="item-container">
                 <?php $items = get_items($mysqli); ?>
-                <?php
-                    if ($category_id != 0) {
-                        $items =   get_items_by_category_id($mysqli, $_GET['catId']);
-                    }
-?>
-                <?php while ($item = $items->fetch_assoc()) {?>
+                <?php if ($category_id != 0) {
+                    $items =   get_items_by_category_id($mysqli, $_GET['catId']);
+                } ?>
+                <?php while ($item = $items->fetch_assoc()) { ?>
                     <a class="select-item" href="?itemId=<?= $item['id'] ?>&catId=<?= $category_id ?>">
                         <img src="../assets/items/<?= $item['img'] ?>">
                         <div class="item-text">
-                            <span><?php
-            if (strlen($item['name']) > 10) {
-                echo substr($item['name'], 0, 10)."...";
-            } else {
-                echo $item['name'];
-            }
-                    ?></span>
+                            <span>
+                                <?php if (strlen($item['name']) > 10) {
+                                    echo substr($item['name'], 0, 10)."...";
+                                } else {
+                                    echo $item['name'];
+                                } ?>
+                            </span>
                             <span><?= $item['price']?> MMK</span>
                         </div>
                     </a>

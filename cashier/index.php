@@ -14,16 +14,20 @@
                 </tr>
               </thead>
               <tbody>
+                <?php $invoices = get_cashier_view($mysqli);
+while ($invoice = $invoices->fetch_assoc()) {
+    ?>
               <tr>
-                  <th>Couple 1</th>
-                  <th>5</th>
-                  <th>50000 MMK</th>
+                  <th><?= $invoice['tableName']?></th>
+                  <th><?= $invoice['count']?></th>
+                  <th><?= $invoice['total']?> MMK</th>
                   <th>
-                    <a href="./invoice.php?id=1" class="btn btn-info">
+                    <a href="./invoice.php?id=<?= $invoice['id']?>" class="btn btn-info">
                       <i class="fa fa-eye"></i>
                     </a>
                   </th>
                 </tr>
+                <?php }?>
               </tbody>
           </table>
           </div>

@@ -1,4 +1,7 @@
 <?php require_once ("../layout/header.php") ?>
+<?php if (isset($_GET['id'])) {
+    $table_id = $_GET['id'];
+}?>
 <div class="content">
       <?php require_once ("../layout/nav.php") ?>  
       <div class="container mt-5">
@@ -15,26 +18,29 @@
                         </tr>
                     </thead>
                     <tbody>
+                        <?php $invoices = get_invoice_detail($mysqli, $table_id)?>
+                        <?php $total = 0 ?>
+                        <?php while ($invoice = $invoices->fetch_assoc()) {?>
+
                         <tr>
-                            <td>Beef</td>
-                            <td>3300</td>
-                            <td>2</td>
+                            <td><?= $invoice['name']?></td>
+                            <td><?= $invoice['price']?> MMK</td>
+                            <td><?= $invoice['qty']?></td>
                             
-                            <td>6600</td>
+                            <td>
+                                <?php
+                                echo $invoice['price'] * $invoice['qty'];
+                            $total  = $total + ($invoice['price'] * $invoice['qty']);
+                            ?>
+                            </td>
                             <td></td>
                         </tr>
-                        <tr>
-                            <td>Beef</td>
-                            <td>3300</td>
-                            <td>2</td>
-                            
-                            <td>6600</td>
-                            <td></td>
-                        </tr>
+                        <?php }?>
+                      
                         <tr><td colspan="5"></td></tr>
                         <tr>
                             <td  colspan="3"> <h5>Total</h5></td>
-                            <td>1200 MMK</td>
+                            <td> <?= $total ?> MMK</td>
                             <td><a href="?pay" class="btn btn-primary">
                             <i class="fa fa-hand-holding-dollar"></i>
                             </a></td>
