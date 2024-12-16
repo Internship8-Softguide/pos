@@ -1,7 +1,14 @@
 <?php require_once ("../layout/header.php") ?>
-<?php if (isset($_GET['id'])) {
+<?php
+if (isset($_GET['id'])) {
     $table_id = $_GET['id'];
-}?>
+}
+if (isset($_GET['pay'])) {
+    pay_invoice($mysqli, $table_id);
+    free_table($mysqli, $table_id);
+    header("location:./index.php");
+}
+?>
 <div class="content">
       <?php require_once ("../layout/nav.php") ?>  
       <div class="container mt-5">
@@ -41,7 +48,7 @@
                         <tr>
                             <td  colspan="3"> <h5>Total</h5></td>
                             <td> <?= $total ?> MMK</td>
-                            <td><a href="?pay" class="btn btn-primary">
+                            <td><a href="?id=<?= $_GET['id']?>&pay" class="btn btn-primary">
                             <i class="fa fa-hand-holding-dollar"></i>
                             </a></td>
                         </tr>

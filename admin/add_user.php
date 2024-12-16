@@ -47,7 +47,7 @@ if (isset($_POST['userName'])) {
             $invalid = "err";
         }
     }
-    if ($profileName === "") {
+    if ($profile['name'] === "") {
         $profileErr = "Please choose profile!";
         $invalid = "err";
     }

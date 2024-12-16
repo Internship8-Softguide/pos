@@ -13,6 +13,12 @@ function taken_table($mysqli, $table_id)
     return $mysqli->query($sql);
 }
 
+function free_table($mysqli, $table_id)
+{
+    $sql = "UPDATE `table` SET `taken`=0 WHERE `id`=$table_id";
+    return $mysqli->query($sql);
+}
+
 function get_table_with_id($mysqli, $id)
 {
     $sql = "SELECT * FROM `table` WHERE `id`=$id";

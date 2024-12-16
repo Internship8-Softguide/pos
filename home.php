@@ -1,4 +1,4 @@
-<?php require_once("./auth/isLogin.php"); ?>
+<?php require_once("./auth/isLogin.php");?>
 <?php
 if ($user['role'] == 1) {
     header("location:./admin/index.php");

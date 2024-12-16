@@ -1,5 +1,5 @@
 <nav >
-            <ul class="pagination pagination-sm">
+            <ul class="pagination pagination-sm"> 
               <?php for ($i = 0;$i < $pagTotal;$i++) { ?>
                 <?php if ($currentPage == $i * 5) { ?>
                 <li class="page-item active">

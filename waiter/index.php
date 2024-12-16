@@ -42,8 +42,7 @@ $order_result = get_order_for_waiter($mysqli, $table_id);
                     </thead>
                     <tbody>
                     <?php $net_total = 0;?>
-                    <?php $show = false; ?>
-                    
+                    <?php $show = false; ?>           
                     <?php while ($ordered = $order_result->fetch_assoc()) {?>
                         <?php $sub_total = $ordered['price'] * $ordered['qty'] ?>
                         <?php if ($ordered['status'] != 9) {
@@ -108,21 +107,21 @@ $order_result = get_order_for_waiter($mysqli, $table_id);
             <div class="customer-table">
                 <?php $tables = get_tables($mysqli); ?>
                 <?php while ($table = $tables->fetch_assoc()) { ?>  
-                <a href="?tableId=<?= $table['id'] ?>" class="c-table 
-                <?php if ($table['taken']) {
-                    echo "taken";
-                } else {
-                    echo "free-table";
-                }
+                    <a href="?tableId=<?= $table['id'] ?>" class="c-table 
+                        <?php if ($table['taken']) {
+                            echo "taken";
+                        } else {
+                            echo "free-table";
+                        }
                     if ($table['id'] == $table_id) {
                         echo " active-table";
                     }
                     ?>
-                "><?= $table['tableName'] ?>
-                <br>
-                <i class="fa fa-chair"></i>&nbsp;&nbsp;
-                <?= $table['seat'] ?>
-            </a>
+                        "><?= $table['tableName'] ?>
+                        <br>
+                        <i class="fa fa-chair"></i>&nbsp;&nbsp;
+                        <?= $table['seat'] ?>
+                    </a>
                 <?php } ?>
             </div>
             <h6>Categories</h6>

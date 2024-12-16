@@ -18,7 +18,7 @@ if (isset($_GET['deleteId'])) {
 }
 ?>
 
-    <div class="content">
+    <div class="content"> 
       <?php require_once ("../layout/nav.php") ?>  
       <div class="card m-5">
         <div class="card-body">
@@ -35,10 +35,11 @@ if (isset($_GET['deleteId'])) {
               </tr>
             </thead>
             <tbody>
-              <?php $users = get_users($mysqli, $currentPage); ?>
               <?php
                 if (isset($_POST["search"]) && $_POST['search'] != '') {
                     $users = get_user_filter($mysqli, $_POST['search']);
+                } else {
+                    $users = get_users($mysqli, $currentPage);
                 } ?>
               <?php
               if (isset($_POST["search"])) {

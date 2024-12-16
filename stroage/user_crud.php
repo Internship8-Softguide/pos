@@ -39,8 +39,8 @@ function get_users($mysqli, $currentPage)
 function have_admin($mysqli)
 {
     $sql = "SELECT COUNT(`id`) as total FROM `user` WHERE `role`=1";
-    $total = $mysqli->query($sql);
-    $total = $total->fetch_assoc();
+    $result = $mysqli->query($sql);
+    $total = $result->fetch_assoc();
     if ($total['total'] > 0) {
         return false;
     }
@@ -51,7 +51,7 @@ function get_user_pag_count($mysqli)
     $sql = "SELECT COUNT(`id`) AS total FROM `user`";
     $count = $mysqli->query($sql);
     $total = $count->fetch_assoc();
-    $page = ceil($total['total'] / 5) ;
+    $page = ceil($total['total'] / 2) ;
     return $page;
 }
 
